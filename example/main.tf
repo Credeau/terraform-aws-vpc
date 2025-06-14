@@ -1,6 +1,5 @@
 module "vpc" {
-  source = "github.com/credeau/terraform-aws-vpc"
-  version = "1.0.0"
+  source = "git::https://github.com/credeau/terraform-aws-vpc.git?ref=v1.0.0"
 
   application  = "mobile-forge"
   environment  = "prod"
