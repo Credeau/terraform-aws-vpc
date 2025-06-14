@@ -43,6 +43,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_application"></a> [application](#input\_application) | application name to refer and mnark across the module | `string` | `"default"` | no |
+| <a name="input_bastion_allowed_cidrs"></a> [bastion\_allowed\_cidrs](#input\_bastion\_allowed\_cidrs) | CIDR blocks allowed to access the bastion host via SSH | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | <a name="input_bastion_ami_id"></a> [bastion\_ami\_id](#input\_bastion\_ami\_id) | AMI ID for bastion (if not provided, latest Ubuntu 22.04 AMI will be used) | `string` | `null` | no |
 | <a name="input_bastion_instance_type"></a> [bastion\_instance\_type](#input\_bastion\_instance\_type) | Instance type for bastion | `string` | `"t3.micro"` | no |
 | <a name="input_bastion_key_name"></a> [bastion\_key\_name](#input\_bastion\_key\_name) | Key name for bastion | `string` | n/a | yes |

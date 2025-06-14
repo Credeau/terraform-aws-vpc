@@ -127,3 +127,9 @@ variable "bastion_ami_id" {
   description = "AMI ID for bastion (if not provided, latest Ubuntu 22.04 AMI will be used)"
   default     = null
 }
+
+variable "bastion_allowed_cidrs" {
+  type        = list(string)
+  description = "CIDR blocks allowed to access the bastion host via SSH"
+  default     = ["0.0.0.0/0"]
+}
