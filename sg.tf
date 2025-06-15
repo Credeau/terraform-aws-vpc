@@ -23,10 +23,11 @@ resource "aws_security_group" "internal_sg" {
   }
 
   ingress {
+    description = "Allow all traffic from within the VPC"
     from_port   = 0
     to_port     = 0
-    protocol    = "tcp"
-    cidr_blocks = [var.vpc_cidr] // Allow access from within the VPC
+    protocol    = -1
+    cidr_blocks = [var.vpc_cidr]
   }
 
   egress {
