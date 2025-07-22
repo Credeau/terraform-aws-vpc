@@ -133,3 +133,9 @@ variable "bastion_allowed_cidrs" {
   description = "CIDR blocks allowed to access the bastion host via SSH"
   default     = ["0.0.0.0/0"]
 }
+
+variable "use_bastion_eip" {
+  type        = bool
+  description = "Use EIP for bastion"
+  default     = true
+}

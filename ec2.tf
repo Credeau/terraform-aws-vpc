@@ -1,4 +1,6 @@
 resource "aws_eip" "bastion" {
+  count = var.use_bastion_eip ? 1 : 0
+
   tags = local.common_tags
 }
 
@@ -22,6 +24,8 @@ resource "aws_instance" "bastion" {
 }
 
 resource "aws_eip_association" "bastion" {
+  count = var.use_bastion_eip ? 1 : 0
+
   instance_id   = aws_instance.bastion.id
   allocation_id = aws_eip.bastion.id
 }
