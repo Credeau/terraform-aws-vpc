@@ -27,5 +27,5 @@ resource "aws_eip_association" "bastion" {
   count = var.use_bastion_eip ? 1 : 0
 
   instance_id   = aws_instance.bastion.id
-  allocation_id = aws_eip.bastion.id
+  allocation_id = aws_eip.bastion[0].id
 }
