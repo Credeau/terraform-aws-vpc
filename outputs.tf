@@ -45,5 +45,5 @@ output "nat_public_ip" {
 
 # public ip address of bastion
 output "bastion_host" {
-  value = var.use_bastion_eip ? aws_eip.bastion.public_ip : aws_instance.bastion.public_ip
+  value = var.use_bastion_eip ? aws_eip.bastion[0].public_ip : aws_instance.bastion.public_ip
 }
