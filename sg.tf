@@ -44,6 +44,20 @@ resource "aws_security_group" "internal_sg" {
       Name : format("%s-vpc-internal-sg", local.stack_identifier)
     }
   )
+
+  # Some consumers of this module attach additional rules to internal_sg via
+  # standalone aws_security_group_rule resources (e.g. security-group-source
+  # rules, which internal_sg_ingress_conf cannot express since it only takes
+  # cidr_blocks). Mixing inline ingress blocks with separate rule resources on
+  # the same SG is unsupported by the AWS provider: the inline ingress list is
+  # authoritative on apply and will revoke any rule not declared in it,
+  # regardless of which resource created it. Ignoring post-creation drift on
+  # ingress is the documented workaround, so externally-managed rules survive
+  # applies. This means internal_sg_ingress_conf is only honored on initial
+  # creation -- changing it later requires tainting/recreating the SG.
+  lifecycle {
+    ignore_changes = [ingress]
+  }
 }
 
 resource "aws_security_group" "external_sg" {
